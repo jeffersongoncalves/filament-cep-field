@@ -30,6 +30,13 @@ You can install the package via composer:
 composer require jeffersongoncalves/filament-cep-field
 ```
 
+Publish and run the migration file:
+
+```bash
+php artisan vendor:publish --tag=cep-migrations
+php artisan migrate
+```
+
 ## Usage
 
 Once installed, you can use the CepInput component in your Filament forms. The component automatically applies a CEP mask (99999-999), validates the input, and can automatically populate address fields when a valid CEP is found.
