@@ -13,60 +13,74 @@ use Livewire\Component as Livewire;
 class CepInput extends TextInput
 {
     private string $mode = 'suffix';
+
     private string $errorMessage = 'CEP inválido.';
+
     private string $actionLabel = 'Buscar CEP';
 
     private bool $actionLabelHidden = false;
+
     private string $streetField = 'street';
+
     private string $neighborhoodField = 'neighborhood';
+
     private string $cityField = 'city';
+
     private string $stateField = 'state';
 
     public function setMode(string $mode): static
     {
         $this->mode = $mode;
+
         return $this;
     }
 
     public function setErrorMessage(string $errorMessage): static
     {
         $this->errorMessage = $errorMessage;
+
         return $this;
     }
 
     public function setActionLabel(string $actionLabel): static
     {
         $this->actionLabel = $actionLabel;
+
         return $this;
     }
 
     public function setActionLabelHidden(bool $actionLabelHidden): static
     {
         $this->actionLabelHidden = $actionLabelHidden;
+
         return $this;
     }
 
     public function setStreetField(string $streetField): static
     {
         $this->streetField = $streetField;
+
         return $this;
     }
 
     public function setNeighborhoodField(string $neighborhoodField): static
     {
         $this->neighborhoodField = $neighborhoodField;
+
         return $this;
     }
 
     public function setCityField(string $cityField): static
     {
         $this->cityField = $cityField;
+
         return $this;
     }
 
     public function setStateField(string $stateField): static
     {
         $this->stateField = $stateField;
+
         return $this;
     }
 
@@ -80,7 +94,7 @@ class CepInput extends TextInput
         });
         $this->suffixAction(function () {
             if ($this->mode === 'suffix') {
-                return Action::make('search-action-' . $this->getKey())
+                return Action::make('search-action-'.$this->getKey())
                     ->label($this->actionLabel)
                     ->hiddenLabel($this->actionLabelHidden)
                     ->icon('heroicon-o-magnifying-glass')
@@ -89,11 +103,12 @@ class CepInput extends TextInput
                     })
                     ->cancelParentActions();
             }
+
             return null;
         });
         $this->prefixAction(function () {
             if ($this->mode === 'prefix') {
-                return Action::make('search-action-' . $this->getKey())
+                return Action::make('search-action-'.$this->getKey())
                     ->label($this->actionLabel)
                     ->hiddenLabel($this->actionLabelHidden)
                     ->icon('heroicon-o-magnifying-glass')
@@ -102,6 +117,7 @@ class CepInput extends TextInput
                     })
                     ->cancelParentActions();
             }
+
             return null;
         });
     }
