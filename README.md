@@ -22,6 +22,15 @@ The Filament CEP Field is a custom input component designed specifically for Bra
 
 This component is perfect for Brazilian applications that need to collect address information efficiently and accurately.
 
+## Features
+
+- 🚀 Multiple API providers (BrasilAPI, ViaCEP, AwesomeAPI)
+- 💾 Automatic database caching with Laravel Model Caching
+- 🔄 Automatic cache invalidation
+- 🎯 CEP validation and formatting
+- ⚡ Queue-based cache management
+- 🇧🇷 Complete Brazilian states support
+
 ## Installation
 
 You can install the package via composer:
