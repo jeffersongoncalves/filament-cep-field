@@ -10,7 +10,6 @@ class CepFieldServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('filament-cep-field')
-            ->hasViews();
+            ->name('filament-cep-field');
     }
 }
