@@ -24,7 +24,7 @@ it('has correct package name', function () {
     $provider = new CepFieldServiceProvider(app());
 
     // Create a new package instance and configure it
-    $package = new Package();
+    $package = new Package;
     $provider->configurePackage($package);
 
     expect($package->name)->toBe('filament-cep-field');
