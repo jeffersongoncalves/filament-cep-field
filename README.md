@@ -31,6 +31,12 @@ This component is perfect for Brazilian applications that need to collect addres
 - ⚡ Queue-based cache management
 - 🇧🇷 Complete Brazilian states support
 
+## Requirements
+
+- PHP 8.2 or higher
+- Filament 4.0 or higher
+- Laravel 10.0 or higher
+
 ## Installation
 
 You can install the package via composer:
