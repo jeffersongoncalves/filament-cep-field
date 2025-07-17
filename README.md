@@ -150,6 +150,90 @@ CepInput::make('cep')
     ->setErrorMessage('CEP não encontrado ou inválido.')
 ```
 
+## SSL Certificate Configuration (cacert.pem)
+
+This package makes HTTPS requests to external APIs (BrasilAPI, ViaCEP, and AwesomeAPI) to retrieve CEP information. If you encounter SSL certificate errors, you may need to configure PHP to use a proper CA certificate bundle.
+
+### What is cacert.pem?
+
+The `cacert.pem` file is a bundle of Certificate Authority (CA) certificates that PHP uses to verify SSL/TLS connections. Without proper CA certificates, PHP cannot verify the authenticity of HTTPS connections, leading to SSL errors.
+
+### Common SSL Errors
+
+You might encounter errors like:
+- `cURL error 60: SSL certificate problem: unable to get local issuer certificate`
+- `SSL certificate verification failed`
+- Connection timeouts when making API requests
+
+### How to Configure cacert.pem
+
+#### Step 1: Download cacert.pem
+
+Download the latest CA certificate bundle from the official cURL website:
+
+```bash
+# Download the latest cacert.pem file
+curl -o cacert.pem https://curl.se/ca/cacert.pem
+```
+
+Or download it manually from: https://curl.se/ca/cacert.pem
+
+#### Step 2: Place the File
+
+Place the `cacert.pem` file in a secure location on your server, for example:
+- **Windows**: `C:\php\extras\ssl\cacert.pem`
+- **Linux/macOS**: `/etc/ssl/certs/cacert.pem` or `/usr/local/etc/ssl/cacert.pem`
+
+#### Step 3: Configure PHP
+
+Edit your `php.ini` file and add/update the following lines:
+
+```ini
+; Enable SSL certificate verification
+openssl.cafile = "C:\php\extras\ssl\cacert.pem"  ; Windows path
+; openssl.cafile = "/etc/ssl/certs/cacert.pem"   ; Linux/macOS path
+
+; For cURL specifically
+curl.cainfo = "C:\php\extras\ssl\cacert.pem"     ; Windows path
+; curl.cainfo = "/etc/ssl/certs/cacert.pem"      ; Linux/macOS path
+```
+
+#### Step 4: Restart Web Server
+
+After modifying `php.ini`, restart your web server (Apache, Nginx, etc.) or PHP-FPM service.
+
+### Verification
+
+To verify that SSL certificates are working correctly, you can test the configuration:
+
+```php
+// Test SSL connection
+$response = file_get_contents('https://brasilapi.com.br/api/cep/v1/01310100');
+if ($response !== false) {
+    echo "SSL configuration is working correctly!";
+} else {
+    echo "SSL configuration needs attention.";
+}
+```
+
+### Alternative Solutions
+
+If you cannot modify `php.ini`, you can also:
+
+1. **Set environment variable** (not recommended for production):
+   ```bash
+   export SSL_CERT_FILE=/path/to/cacert.pem
+   ```
+
+2. **Use Laravel HTTP client options** in your application:
+   ```php
+   Http::withOptions([
+       'verify' => '/path/to/cacert.pem'
+   ])->get('https://api.example.com');
+   ```
+
+**Note**: Disabling SSL verification (`'verify' => false`) is strongly discouraged as it makes your application vulnerable to man-in-the-middle attacks.
+
 ## Testing
 
 ```bash
