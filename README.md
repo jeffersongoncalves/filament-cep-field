@@ -34,7 +34,7 @@ This component is perfect for Brazilian applications that need to collect addres
 ## Requirements
 
 - PHP 8.2 or higher
-- Filament 4.0 or higher
+- Filament 5.0
 - Laravel 10.0 or higher
 
 ## Installation
