@@ -1,6 +1,6 @@
 <div class="filament-hidden">
 
-![Filament CEP Field](https://raw.githubusercontent.com/jeffersongoncalves/filament-cep-field/1.x/art/jeffersongoncalves-filament-cep-field.png)
+![Filament Cep Field](https://raw.githubusercontent.com/jeffersongoncalves/filament-cep-field/2.x/art/jeffersongoncalves-filament-cep-field.png)
 
 </div>
 
