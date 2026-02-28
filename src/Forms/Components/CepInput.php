@@ -4,7 +4,6 @@ namespace JeffersonGoncalves\Filament\CepField\Forms\Components;
 
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Validation\ValidationException;
 use JeffersonGoncalves\Cep\Models\Cep;
@@ -89,46 +88,49 @@ class CepInput extends TextInput
         parent::setUp();
         $this->mask('99999-999');
         $this->minLength(9);
-        $this->afterStateUpdated(function ($state, Livewire $livewire, Set $set, Component $component) {
-            $this->findByCep($state, $livewire, $set, $component);
+        $this->afterStateUpdated(function ($state, Livewire $livewire, Set $set) {
+            $this->findByCep($state, $livewire, $set);
         });
         $this->suffixAction(function () {
             if ($this->mode === 'suffix') {
-                return Action::make('search-action-'.$this->getKey())
-                    ->label($this->actionLabel)
-                    ->hiddenLabel($this->actionLabelHidden)
-                    ->icon('heroicon-o-magnifying-glass')
-                    ->action(function ($state, Livewire $livewire, Set $set, Component $component) {
-                        $this->findByCep($state, $livewire, $set, $component);
-                    })
-                    ->cancelParentActions();
+                return $this->makeCepAction();
             }
 
             return null;
         });
         $this->prefixAction(function () {
             if ($this->mode === 'prefix') {
-                return Action::make('search-action-'.$this->getKey())
-                    ->label($this->actionLabel)
-                    ->hiddenLabel($this->actionLabelHidden)
-                    ->icon('heroicon-o-magnifying-glass')
-                    ->action(function ($state, Livewire $livewire, Set $set, Component $component) {
-                        $this->findByCep($state, $livewire, $set, $component);
-                    })
-                    ->cancelParentActions();
+                return $this->makeCepAction();
             }
 
             return null;
         });
     }
 
-    private function findByCep($state, Livewire $livewire, Set $set, Component $component): void
+    private function makeCepAction(): Action
     {
-        $livewire->validateOnly($component->getKey());
+        $action = Action::make('search-action-'.$this->getKey())
+            ->label($this->actionLabel)
+            ->icon('heroicon-o-magnifying-glass')
+            ->action(function ($state, Livewire $livewire, Set $set) {
+                $this->findByCep($state, $livewire, $set);
+            })
+            ->cancelParentActions();
+
+        if (! $this->actionLabelHidden) {
+            $action->button();
+        }
+
+        return $action;
+    }
+
+    private function findByCep($state, Livewire $livewire, Set $set): void
+    {
+        $livewire->validateOnly($this->getStatePath());
         $cep = Cep::findByCep($state);
         if (blank($cep['cep'])) {
             throw ValidationException::withMessages([
-                $component->getKey() => $this->errorMessage,
+                $this->getStatePath() => $this->errorMessage,
             ]);
         }
         $set($this->streetField, $cep['street']);
