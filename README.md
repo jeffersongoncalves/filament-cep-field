@@ -9,6 +9,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jeffersongoncalves/filament-cep-field.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-cep-field)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-cep-field/fix-php-code-style-issues.yml?branch=3.x&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/filament-cep-field/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3A3.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/filament-cep-field.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-cep-field)
+[![License](https://img.shields.io/packagist/l/jeffersongoncalves/filament-cep-field.svg?style=flat-square)](LICENSE.md)
 
 The Filament CEP Field is a custom input component designed specifically for Brazilian postal codes (CEP - Código de Endereçamento Postal). This component extends Filament's form capabilities by providing a specialized input field that handles CEP formatting, validation, and automatic address lookup.
 
