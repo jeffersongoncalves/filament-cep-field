@@ -36,10 +36,5 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
         config()->set('app.key', 'base64:'.base64_encode(random_bytes(32)));
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-cep-field_table.php.stub';
-        $migration->up();
-        */
     }
 }
