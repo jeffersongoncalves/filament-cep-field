@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.3 - 2026-10-28
+
+Removes the dead, commented-out skeleton migration include from the test case. No runtime changes.
+
 ## 3.0.2 - 2026-03-04
 
 ### Breaking Changes
