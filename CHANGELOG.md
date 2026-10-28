@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.2 - 2026-10-28
+
+Removes the dead, commented-out skeleton migration include from the test case. No runtime changes.
+
 ## 1.1.1 - 2026-02-28
 
 ### Bug Fixes
