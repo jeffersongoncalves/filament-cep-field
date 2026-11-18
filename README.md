@@ -40,6 +40,14 @@ This component is perfect for Brazilian applications that need to collect addres
 - Filament 5.0
 - Laravel 10.0 or higher
 
+## Compatibility
+
+| Branch | Filament | Package version |
+|--------|----------|-----------------|
+| [1.x](https://github.com/jeffersongoncalves/filament-cep-field/tree/1.x) | 3.x | `^1.0` |
+| [2.x](https://github.com/jeffersongoncalves/filament-cep-field/tree/2.x) | 4.x | `^2.0` |
+| [3.x](https://github.com/jeffersongoncalves/filament-cep-field/tree/3.x) | 5.x | `^3.0` |
+
 ## Installation
 
 You can install the package via composer:
